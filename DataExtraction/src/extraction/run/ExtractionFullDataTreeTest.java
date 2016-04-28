@@ -15,7 +15,7 @@ public class ExtractionFullDataTreeTest {
 		Tree category = extraction.extractFullDataTree(directory);
 		
 		//Get a full tree
-		
+		//Test
 		category.printNodeofTree("In Laws");
 	      
 		System.out.println(category.printRootPath("Halloween Pranks"));
