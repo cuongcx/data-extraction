@@ -94,14 +94,14 @@ public class Tree<T> {
  	 * @param the data of node
  	 * @return string of root path
  	 */
-    public String printRootPath(T node_data){
+    public String inheritedHypernymy(T node_data){
     	String rootpathtoString = "";
     	ArrayList<Node<T>> rootpath = getRootPath(node_data);
     	if (rootpath.size() == 0){
     		rootpathtoString = "There is no path to root. The node doesn't exist!";
     	}else{
     		for (int i=0; i<rootpath.size()-1; i++){
-    			rootpathtoString += rootpath.get(i).getData() + "<<";
+    			rootpathtoString += rootpath.get(i).getData() + "<==";
     		}
     		rootpathtoString += getRoot().getData();
     	}
@@ -115,6 +115,23 @@ public class Tree<T> {
     public void printTree(){
     	getRoot().printNode();
     }
+    // ======================================================================
+ 	/**
+ 	 * print rootpath of all category
+ 	 * 
+ 	 */
+    @SuppressWarnings("unchecked")
+	public String getRoothPathofCategories(Node<String> node){
+		String res = "";
+		if (!node.getData().contains("http://www.wikihow.com/")){
+			res = res + node.getData() + ":" + inheritedHypernymy((T) node.getData()) + "\n";
+			if (node.getChildren().size() > 0){
+				for (Node<String> child: node.getChildren())
+					res += getRoothPathofCategories(child);
+			}
+		}
+		return res;
+	}
     
     // ======================================================================
  	/**
@@ -206,9 +223,9 @@ public class Tree<T> {
      	 * 
      	 */
         public void addChild(Node<T> newchild) {
-            ArrayList<Node<T>> newChildren = (ArrayList<Node<T>>) getChildren();
-            newChildren.add(newchild);
-            setChildren(newChildren);
+        	if(newchild!=null)
+        		this.children.add(newchild);
+        	
         }
         // ======================================================================
      	/**
@@ -217,9 +234,7 @@ public class Tree<T> {
      	 * 
      	 */
         public void addChildren(List<Node<T>> children) {
-            ArrayList<Node<T>> newChildren = (ArrayList<Node<T>>) getChildren();
-            newChildren.addAll(children);
-            setChildren(newChildren);
+        	for(Node<T> child: children) addChild(child);
         }
         // ======================================================================
      	/**
@@ -228,12 +243,10 @@ public class Tree<T> {
      	 * 
      	 */
         public void removeChild(T child_data) {
-            ArrayList<Node<T>> newChildren = (ArrayList<Node<T>>) getChildren();
             Node<T> node = returnNode(child_data);
             if (node != null){
-            	newChildren.remove(node);
+            	this.children.remove(node);
             }
-            setChildren(newChildren);
         }
         // ======================================================================
      	/**

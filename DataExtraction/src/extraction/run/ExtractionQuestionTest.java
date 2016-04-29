@@ -9,17 +9,18 @@ import java.util.ArrayList;
 
 import question.Question;
 import extraction.ExtractionQuestion;
+import global.Global;
 
 public class ExtractionQuestionTest {
 
 	@SuppressWarnings({ })
 	public static void main(String[] args) throws Exception {
-		String directory = "D:\\Study in IMPRS\\Research\\Master Thesis\\Crawling\\WikiHow";
+		String directory = Global.CRAWL_DIRECTORY;
 		try{
 			Writer jsonout = new BufferedWriter(new OutputStreamWriter(
-		              new FileOutputStream("D:\\Study in IMPRS\\Research\\Master Thesis\\Crawling\\questions.json"), "utf-8"));
+		              new FileOutputStream(Global.JSON_FILE), "utf-8"));
 			Writer textout = new BufferedWriter(new OutputStreamWriter(
-		              new FileOutputStream("D:\\Study in IMPRS\\Research\\Master Thesis\\Crawling\\questions.txt"), "utf-8"));
+		              new FileOutputStream(Global.DATA_FILE), "utf-8"));
 			
 			ExtractionQuestion extractQues = new ExtractionQuestion();
 			ArrayList<Question> allQuestions = extractQues.extractionQuestion(directory);

@@ -83,7 +83,7 @@ public class ExtractionCategory {
 		    			  }
 		    		  }
 		    		  temp_cate += "<2>";
-		    		  System.out.println(temp_cate);
+		    		  //System.out.println(temp_cate);
 		    		  String childofroot_value = TParser.getContent(temp_cate, "<1>", "<2>");
 		    		  //New child of root
 		    		  Node<String> childofroot = new Node<>();

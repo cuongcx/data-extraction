@@ -15,7 +15,7 @@ public class ExtractionCategoryTest {
 		
 		category.printNodeofTree("Asia");
 		      
-		System.out.println(category.printRootPath("Japan"));
+		System.out.println(category.inheritedHypernymy("Japan"));
 		      
 		if (category.isExist("Family Life")) System.out.println("Exist!");
 		else System.out.println("None exists!"); 
